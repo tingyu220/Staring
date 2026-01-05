@@ -244,21 +244,8 @@ CSS变量在 `styles/main.css` 的 `:root` 中定义，可以修改颜色、字�
    - 监控Core Web Vitals指标
    - 定期优化和更新
 
-## 📄 许可证
-
-MIT License
-
-## 👥 贡献
-
-欢迎提交Issue和Pull Request！
-
-## 📞 联系方式
-
-如有问题或建议，请通过GitHub Issues联系。
-
----
-
 **星空仰望** - 以镜头定格璀璨，用热爱连接同好 ✨
+
 
 
 
