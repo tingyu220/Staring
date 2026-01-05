@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="星空仰望 - 专业的星空摄影社区，分享精美的星空摄影作品，交流摄影技巧，探索宇宙之美">
+    <meta name="keywords" content="星空摄影,天文摄影,星空仰望,摄影社区,星空照片">
+    <meta name="author" content="星空仰望">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="星空仰望 | 星空摄影社区">
+    <meta property="og:description" content="专业的星空摄影社区，分享精美的星空摄影作品">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="星空仰望 | 星空摄影社区">
+    <meta name="twitter:description" content="专业的星空摄影社区，分享精美的星空摄影作品">
+    
+    <title>星空仰望 | 星空摄影社区</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="星空仰望">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/performance.css">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="styles/main.css" as="style">
+    <link rel="preconnect" href="https://via.placeholder.com">
+    <link rel="preconnect" href="https://picsum.photos">
+    
+    <!-- DNS预解析 -->
+    <link rel="dns-prefetch" href="https://via.placeholder.com">
+    <link rel="dns-prefetch" href="https://picsum.photos">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div id="pageLoader" class="active" aria-hidden="true">
+        <div class="loader-content">
+            <div class="loader-spinner" aria-hidden="true"></div>
+            <div class="loader-text">加载中...</div>
+        </div>
+    </div>
+    <header role="banner" class="navbar" id="navbar">
+        <nav role="navigation" aria-label="主导航" class="navbar-container">
+            <!-- 品牌Logo -->
+            <div class="navbar-brand">
+                <a href="#home" class="brand-logo" aria-label="星空仰望 - 返回首页">星空仰望</a>
+            </div>
+
+            <!-- 汉堡菜单按钮（移动端） -->
+            <button 
+                class="navbar-toggle" 
+                id="navbarToggle" 
+                aria-label="切换导航菜单"
+                aria-expanded="false"
+                aria-controls="navbarMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- 导航菜单 -->
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link" aria-label="首页">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gallery" class="nav-link" aria-label="作品展示">作品展示</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#guide" class="nav-link" aria-label="星空资讯">星空资讯</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link" aria-label="关于">关于</a>
+                    </li>
+                </ul>
+
+                <!-- 用户操作区域 -->
+                <div class="navbar-actions">
+                    <button class="btn-upload" aria-label="上传作品">
+                        <span class="btn-upload-icon" aria-hidden="true">📷</span>
+                        <span class="btn-upload-text">上传作品</span>
+                    </button>
+                    <button class="btn-user" aria-label="用户菜单" id="userMenuBtn">
+                        <span class="user-icon" aria-hidden="true">👤</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 移动端背景遮罩 -->
+            <div class="navbar-overlay" id="navbarOverlay" aria-hidden="true"></div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section id="home" class="hero-section" aria-labelledby="home-heading">
+            <!-- 视频背景 -->
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="videos/ZhuYeshipin.mp4" type="video/mp4">
+                您的浏览器不支持视频标签。
+            </video>
+            <!-- 视频遮罩层 -->
+            <div class="hero-video-overlay"></div>
+            <!-- 内容 -->
+            <div class="hero-content">
+                <h1 id="home-heading" class="hero-title">星空仰望</h1>
+                <p class="hero-subtitle">以镜头定格璀璨，用热爱连接同好</p>
+                <div class="hero-actions">
+                    <a href="#gallery" class="btn btn-hero btn-hero-primary">探索作品</a>
+                    <a href="about.html" class="btn btn-hero btn-hero-secondary">关于我们</a>
+                </div>
+            </div>
+            <a href="#gallery" class="hero-scroll-indicator" aria-label="向下滚动">
+                <span class="scroll-arrow"></span>
+            </a>
+        </section>
+
+        <!-- 热门作品展示区 -->
+        <section id="featured-works" class="featured-works-section" aria-labelledby="featured-works-heading">
+            <div class="section-header scroll-fade-slide-up">
+                <h2 id="featured-works-heading">热门星空作品</h2>
+                <a href="#gallery" class="section-link">查看全部作品 →</a>
+            </div>
+            <div class="featured-carousel-container">
+                <div class="featured-carousel" id="featuredCarousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture1.jpg" alt="热门作品1" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture2.jpg" alt="热门作品2" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture3.jpg" alt="热门作品3" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture4.jpg" alt="热门作品4" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture5.jpg" alt="热门作品5" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture6.jpg" alt="热门作品6" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture7.jpg" alt="热门作品7" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture8.jpg" alt="热门作品8" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture9.jpg" alt="热门作品9" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/show/Picture10.jpg" alt="热门作品10" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="上一张">‹</button>
+                <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="下一张">›</button>
+                <div class="carousel-indicators" id="carouselIndicators"></div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section" aria-labelledby="gallery-heading">
+            <div class="gallery-header scroll-fade-slide-up">
+                <h2 id="gallery-heading">作品展示</h2>
+                <p>浏览精美的星空摄影作品</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- 卡片1 -->
+                <article class="gallery-card" data-id="1">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="images/show/Picture1.jpg" 
+                            alt="星空旋转" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                        <div class="card-overlay">
+                            <button class="card-view-btn" aria-label="查看大图">
+                                <span>🔍</span> 查看大图
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">星空旋转</h3>
+                        <div class="card-author">
+                            <div class="author-avatar">📸</div>
+                            <div class="author-info">
+                                <span class="author-name">星空摄影师</span>
+                                <span class="card-location">📍 西藏 · 2024年8月</span>
+                            </div>
+                        </div>
+                        <div class="card-params">
+                            <span>f/2.8</span>
+                            <span>ISO 3200</span>
+                            <span>30s</span>
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">银河</span>
+                            <span class="tag">星空</span>
+                            <span class="tag">风光</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" aria-label="点赞" data-liked="false" data-artwork-id="1">
+                                <span class="action-icon">🤍</span>
+                                <span class="action-count">128</span>
+                            </button>
+                            <button class="action-btn comment-btn" aria-label="评论">
+                                <span class="action-icon">💬</span>
+                                <span class="action-count">24</span>
+                            </button>
+                            <button class="action-btn favorite-btn" aria-label="收藏" data-favorited="false" data-artwork-id="1">
+                                <span class="action-icon">⭐</span>
+                                <span class="action-count">收藏</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片2 -->
+                <article class="gallery-card scroll-slide-up scroll-delay-2" data-id="2">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="images/show/Picture2.jpg" 
+                            alt="夜空繁星点点" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                        <div class="card-overlay">
+                            <button class="card-view-btn" aria-label="查看大图">
+                                <span>🔍</span> 查看大图
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">夜空繁星点点</h3>
+                        <div class="card-author">
+                            <div class="author-avatar">📷</div>
+                            <div class="author-info">
+                                <span class="author-name">夜拍达人</span>
+                                <span class="card-location">📍 北京 · 2024年7月</span>
+                            </div>
+                        </div>
+                        <div class="card-params">
+                            <span>f/4.0</span>
+                            <span>ISO 1600</span>
+                            <span>60s × 120</span>
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">星轨</span>
+                            <span class="tag">建筑</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" aria-label="点赞" data-liked="false" data-artwork-id="2">
+                                <span class="action-icon">🤍</span>
+                                <span class="action-count">256</span>
+                            </button>
+                            <button class="action-btn comment-btn" aria-label="评论">
+                                <span class="action-icon">💬</span>
+                                <span class="action-count">42</span>
+                            </button>
+                            <button class="action-btn favorite-btn" aria-label="收藏" data-favorited="false" data-artwork-id="2">
+                                <span class="action-icon">⭐</span>
+                                <span class="action-count">收藏</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片3 -->
+                <article class="gallery-card scroll-slide-up scroll-delay-3" data-id="3">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="images/show/Picture3.jpg" 
+                            alt="蓝色星轨" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                        <div class="card-overlay">
+                            <button class="card-view-btn" aria-label="查看大图">
+                                <span>🔍</span> 查看大图
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">蓝色星轨</h3>
+                        <div class="card-author">
+                            <div class="author-avatar">🌟</div>
+                            <div class="author-info">
+                                <span class="author-name">极光猎人</span>
+                                <span class="card-location">📍 挪威 · 2024年3月</span>
+                            </div>
+                        </div>
+                        <div class="card-params">
+                            <span>f/2.8</span>
+                            <span>ISO 2500</span>
+                            <span>20s</span>
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">极光</span>
+                            <span class="tag">星空</span>
+                            <span class="tag">风光</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" aria-label="点赞" data-liked="false" data-artwork-id="3">
+                                <span class="action-icon">🤍</span>
+                                <span class="action-count">512</span>
+                            </button>
+                            <button class="action-btn comment-btn" aria-label="评论">
+                                <span class="action-icon">💬</span>
+                                <span class="action-count">68</span>
+                            </button>
+                            <button class="action-btn favorite-btn" aria-label="收藏" data-favorited="false" data-artwork-id="3">
+                                <span class="action-icon">⭐</span>
+                                <span class="action-count">收藏</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片4 -->
+                <article class="gallery-card scroll-slide-up scroll-delay-1" data-id="4">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="images/show/Picture4.jpg" 
+                            alt="雪地星河" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                        <div class="card-overlay">
+                            <button class="card-view-btn" aria-label="查看大图">
+                                <span>🔍</span> 查看大图
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">雪地星河</h3>
+                        <div class="card-author">
+                            <div class="author-avatar">🌌</div>
+                            <div class="author-info">
+                                <span class="author-name">银河捕手</span>
+                                <span class="card-location">📍 新疆 · 2024年6月</span>
+                            </div>
+                        </div>
+                        <div class="card-params">
+                            <span>f/2.8</span>
+                            <span>ISO 3200</span>
+                            <span>25s</span>
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">银河</span>
+                            <span class="tag">倒影</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" aria-label="点赞" data-liked="false" data-artwork-id="4">
+                                <span class="action-icon">🤍</span>
+                                <span class="action-count">384</span>
+                            </button>
+                            <button class="action-btn comment-btn" aria-label="评论">
+                                <span class="action-icon">💬</span>
+                                <span class="action-count">56</span>
+                            </button>
+                            <button class="action-btn favorite-btn" aria-label="收藏" data-favorited="false" data-artwork-id="4">
+                                <span class="action-icon">⭐</span>
+                                <span class="action-count">收藏</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片5 -->
+                <article class="gallery-card scroll-slide-up scroll-delay-2" data-id="5">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="images/show/Picture5.jpg" 
+                            alt="流星雨" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                        <div class="card-overlay">
+                            <button class="card-view-btn" aria-label="查看大图">
+                                <span>🔍</span> 查看大图
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">英仙座流星雨</h3>
+                        <div class="card-author">
+                            <div class="author-avatar">☄️</div>
+                            <div class="author-info">
+                                <span class="author-name">流星观测者</span>
+                                <span class="card-location">📍 内蒙古 · 2024年8月</span>
+                            </div>
+                        </div>
+                        <div class="card-params">
+                            <span>f/2.8</span>
+                            <span>ISO 4000</span>
+                            <span>15s × 200</span>
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">流星雨</span>
+                            <span class="tag">星空</span>
+                            <span class="tag">堆栈</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" aria-label="点赞" data-liked="false" data-artwork-id="5">
+                                <span class="action-icon">🤍</span>
+                                <span class="action-count">892</span>
+                            </button>
+                            <button class="action-btn comment-btn" aria-label="评论">
+                                <span class="action-icon">💬</span>
+                                <span class="action-count">128</span>
+                            </button>
+                            <button class="action-btn favorite-btn" aria-label="收藏" data-favorited="false" data-artwork-id="5">
+                                <span class="action-icon">⭐</span>
+                                <span class="action-count">收藏</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片6 -->
+                <article class="gallery-card scroll-slide-up scroll-delay-3" data-id="6">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="images/show/Picture6.jpg" 
+                            alt="星云特写" 
+                            class="card-image"
+                            loading="lazy"
+                        >
+                        <div class="card-overlay">
+                            <button class="card-view-btn" aria-label="查看大图">
+                                <span>🔍</span> 查看大图
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">猎户座大星云</h3>
+                        <div class="card-author">
+                            <div class="author-avatar">🔭</div>
+                            <div class="author-info">
+                                <span class="author-name">深空摄影师</span>
+                                <span class="card-location">📍 云南 · 2024年1月</span>
+                            </div>
+                        </div>
+                        <div class="card-params">
+                            <span>f/5.6</span>
+                            <span>ISO 800</span>
+                            <span>300s × 30</span>
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">深空</span>
+                            <span class="tag">星云</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" aria-label="点赞" data-liked="false" data-artwork-id="6">
+                                <span class="action-icon">🤍</span>
+                                <span class="action-count">724</span>
+                            </button>
+                            <button class="action-btn comment-btn" aria-label="评论">
+                                <span class="action-icon">💬</span>
+                                <span class="action-count">96</span>
+                            </button>
+                            <button class="action-btn favorite-btn" aria-label="收藏" data-favorited="false" data-artwork-id="6">
+                                <span class="action-icon">⭐</span>
+                                <span class="action-count">收藏</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 大图查看模态框 -->
+        <div class="image-modal" id="imageModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose" aria-label="关闭">
+                    <span>×</span>
+                </button>
+                <img src="" alt="" class="modal-image" id="modalImage">
+                <div class="modal-info">
+                    <h3 id="modalTitle" class="modal-title"></h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- 星空资讯 - 全屏背景区 -->
+        <section id="guide" class="info-hero-section" aria-labelledby="guide-heading">
+            <div class="info-hero-background">
+                <img src="images/bg/Background.jpg" alt="星空背景" class="info-hero-bg-image">
+                <div class="info-hero-overlay"></div>
+            </div>
+            <div class="info-hero-content">
+                <p class="info-hero-text">当城市的霓虹褪去，银河才会露出它的模样</p>
+                <p class="info-hero-text">而按下快门的瞬间，所有疲惫都被星光治愈</p>
+                <p class="info-hero-text">你不必远行，在这里就能触摸整片星空</p>
+            </div>
+        </section>
+
+        <!-- 星空资讯 - Z字形内容区 -->
+        <section class="info-content-section" aria-labelledby="info-content-heading">
+            <div class="container">
+                <!-- 信息卡片1 - 左图右文 -->
+                <article class="info-card info-card-left scroll-fade-slide-up">
+                    <div class="info-card-image">
+                        <img src="images/ask/Information1.jpeg" alt="星空摄影全攻略：零基础也能拍出银河" loading="lazy">
+                    </div>
+                    <div class="info-card-content">
+                        <h3 class="info-card-title">1.星空摄影全攻略：零基础也能拍出银河</h3>
+                        <div class="info-card-text">
+                            <p>星空摄影是摄影爱好者心中的"浪漫终极挑战"——当镜头对准浩瀚银河，繁星如碎钻般洒满夜空，那种震撼感足以让人忘记所有拍摄的艰辛。但很多新手在尝试时，常因参数设置错误、对焦不准或曝光不足而失败。</p>
+                            <p><strong>1. 时间选择：避开光污染，抓住"黄金时段"</strong></p>
+                            <p>月相影响：满月时月光过强，会掩盖星星光芒，建议选择新月前后5天（月亮亮度低于20%）。</p>
+                            <p>天文季节：北半球夏季（6-8月）银河核心最清晰，冬季（12-2月）银河较暗但适合拍摄猎户座等星座。</p>
+                            <p>天气条件：无云、无雾、无月光干扰的晴夜，可通过天气App（如Windy、天文通）查看云层覆盖和光污染等级。</p>
+                            <p><strong>2. 地点选择：远离城市，寻找"暗夜保护区"</strong></p>
+                            <p>光污染等级：使用光污染地图（如Light Pollution Map）选择等级≤3（蓝色区域）的地点，如山区、沙漠或海边。</p>
+                            <p>前景搭配：星空照片需前景增加层次感，可选择树木、岩石、湖泊或废弃建筑作为构图元素。</p>
+                            <p><strong>3. 器材清单：相机、镜头、三脚架是核心</strong></p>
+                            <p>相机：全画幅相机（如佳能EOS R6、索尼A7M4）高感表现更优，但APS-C画幅（如佳能M6 Mark II）也可通过后期降噪处理。</p>
+                            <p>镜头：广角大光圈镜头（如14-24mm F2.8、20mm F1.8）是首选，光圈越大（如F1.4），进光量越多，星空越明亮。</p>
+                            <p>三脚架：必须稳固，避免风吹或按键震动导致画面模糊。</p>
+                            <p>辅助工具：快门线（或手机遥控）、头灯（红光模式保护夜视）、备用电池（低温会加速电量消耗）。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 信息卡片2 - 右图左文 -->
+                <article class="info-card info-card-right scroll-fade-slide-up">
+                    <div class="info-card-content">
+                        <h3 class="info-card-title">2.星空摄影全攻略：拍摄器材</h3>
+                        <div class="info-card-text">
+                            <p><strong>相机：</strong>高感全画幅相机，相对APS画幅相机最大的优势之一就是高感画质，因为星空摄影要用到ISO3200-6400，甚至ISO12800，高感表现力对画质非常重要。</p>
+                            <p><strong>镜头：</strong>大光圈超广角镜头，星空摄影需要把地景和星空都拍摄进画面，超广角镜头视角宽阔，有利于构图。</p>
+                            <p>尼康14-24mm F2.8、蔡司15mm F2.8是很好的星空摄影镜头。最近市场上新出现几个大光圈定焦广角镜头，诸如Sigma 14mm F1.8, 老蛙12mm F2.8等等，都是星空摄影的利器。当然这些镜头也有价格昂贵，畸变控制不好，太重等等弊端，还是要根据自己的情况和能力综合考虑。除了主力镜头，我也使用三洋14mm/F2.8拍摄银河，这是性价比非常高的一个大光圈广角镜头。</p>
+                            <p><strong>三脚架：</strong>星空摄影都需要长时间曝光，稳固的三脚架和球头是必须的。</p>
+                            <p><strong>头灯&手电：</strong> 为了避免光污染，星空摄影的拍摄地都在远离城市的偏远地区，在黑暗的环境中照明设备非常重要，任何时候安全第一是首要原则。这是常常被掉以轻心的附件，由于不够重视我也有过极为深刻的教训。一次拍摄中我和同伴的头灯都没电了，而且手机所剩电量无几，在伸手不见五指的国家公园中依靠手机微弱的光亮摸黑走出来。自此之后每次外拍，我一定会把两个头灯装在包中，同时带上备用电池。头灯和手电的另一作用就是给前景补光，并有助于对焦。</p>
+                        </div>
+                    </div>
+                    <div class="info-card-image">
+                        <img src="images/ask/Information2.jpeg" alt="星空摄影全攻略：拍摄器材" loading="lazy">
+                    </div>
+                </article>
+
+                <!-- 信息卡片3 - 左图右文 -->
+                <article class="info-card info-card-left scroll-fade-slide-up">
+                    <div class="info-card-image">
+                        <img src="images/ask/Information3.jpeg" alt="星空摄影全攻略：摄影大神" loading="lazy">
+                    </div>
+                    <div class="info-card-content">
+                        <h3 class="info-card-title">3.星空摄影全攻略：摄影大神</h3>
+                        <div class="info-card-text">
+                            <p>董书畅是中国新生代天文与风光摄影师，其作品以科学性与艺术性的结合著称。他凭借日环食作品《The Golden Ring》摘得2021年格林威治皇家天文台年度天文摄影师大赛全球总冠军及太阳组冠军，成为该赛事最年轻的中国籍总冠军。此外，他在2019年以《天地共舞》获得同一赛事最佳新人组冠军，并多次入围国内外摄影赛事。董书畅的非科班出身背景和自学经历（大学主修物流管理）为其创作增添了独特视角。他长期致力于极端环境下的拍摄实践，如西藏阿里地区的日环食记录、喜马拉雅山脉的"红色精灵"闪电群捕捉等，其作品被《中国国家地理》等权威媒体采用。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 信息卡片4 - 右图左文 -->
+                <article class="info-card info-card-right scroll-fade-slide-up">
+                    <div class="info-card-content">
+                        <h3 class="info-card-title">4.星空摄影全攻略：2025年度星空摄影大赛惊艳作品</h3>
+                        <div class="info-card-text">
+                            <p>近日，第八届"年度银河摄影师"大赛揭晓入围作品，来自全球的25幅星空摄影佳作震撼亮相。从奥地利雪山冰屋到国际空间站舷窗，从智利仙人掌荒漠到也门秘境岛屿，这些跨越地理界限的影像不仅展现了银河系的壮丽，更记录了彗星、流星雨等天象奇观，为观众呈现了一场视觉盛宴。</p>
+                            <p>在奥地利多布拉奇山脉，摄影师乌罗什·芬克耗时三小时守候在零下冰屋，最终捕捉到银河核心与木星、火星同框的奇幻画面。积雪覆盖的小木屋在星辉映照下，宛如童话场景。而在美国内华达山脉东麓，摄影师迈克·阿布拉米安将银河与英仙座流星雨定格于同一画面，夜空中划过的数道流星轨迹为静态星野注入动感。</p>
+                        </div>
+                    </div>
+                    <div class="info-card-image">
+                        <img src="images/ask/Information4.png" alt="星空摄影全攻略：2025年度星空摄影大赛惊艳作品" loading="lazy">
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer role="contentinfo" class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-logo">星空仰望</h3>
+                <p class="footer-tagline">以镜头定格璀璨，用热爱连接同好</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="微信">
+                        <span>微信</span>
+                    </a>
+                    <a href="#" class="social-link" aria-label="微博">
+                        <span>微博</span>
+                    </a>
+                    <a href="#" class="social-link" aria-label="QQ群">
+                        <span>QQ群</span>
+                    </a>
+                    <a href="#" class="social-link" aria-label="GitHub">
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 class="footer-title">快速链接</h4>
+                    <ul class="footer-menu">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#gallery">作品展示</a></li>
+                        <li><a href="#guide">新手入门</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">关于我们</h4>
+                    <ul class="footer-menu">
+                        <li><a href="about.html">关于星空仰望</a></li>
+                        <li><a href="about.html#contact">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">帮助中心</h4>
+                    <ul class="footer-menu">
+                        <li><a href="#guide">使用指南</a></li>
+                        <li><a href="#guide">常见问题</a></li>
+                        <li><a href="#guide">反馈建议</a></li>
+                        <li><a href="#guide">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 星空仰望. 保留所有权利.</p>
+            <p>探索星空，记录美好</p>
+        </div>
+    </footer>
+
+    <!-- 兼容性处理（最先加载） -->
+    <script src="compatibility.js"></script>
+    
+    <!-- 关键脚本（同步加载） -->
+    <script src="app-state.js"></script>
+    
+    <!-- 性能优化脚本（优先加载） -->
+    <script src="performance.js"></script>
+    
+    <!-- 其他脚本（延迟加载） -->
+    <script src="scroll-animations.js" defer></script>
+    <script src="script.js" defer></script>
+    
+    <!-- Service Worker 注册 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+    "name": "星空仰望 - 星空摄影社区",
+    "short_name": "星空仰望",
+    "description": "专业的星空摄影社区，分享精美的星空摄影作品，交流摄影技巧，探索宇宙之美",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0e27",
+    "theme_color": "#6366f1",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "zh-CN",
+    "icons": [
+        {
+            "src": "https://via.placeholder.com/192x192/6366f1/ffffff?text=🌟",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "https://via.placeholder.com/512x512/6366f1/ffffff?text=🌟",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["photography", "social", "entertainment"],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "作品展示",
+            "short_name": "作品",
+            "description": "浏览星空摄影作品",
+            "url": "/gallery.html",
+            "icons": [
+                {
+                    "src": "https://via.placeholder.com/96x96/6366f1/ffffff?text=📷",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ]
+}
+
+
+
+

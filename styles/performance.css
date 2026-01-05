@@ -1,0 +1,157 @@
+/* ============================================
+   性能优化样式
+   ============================================ */
+
+/* 页面加载动画 */
+#pageLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-bg-primary);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#pageLoader.hidden,
+#pageLoader:not(.active) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-content {
+    text-align: center;
+    color: var(--color-text-primary);
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(99, 102, 241, 0.2);
+    border-top-color: var(--color-accent-primary);
+    border-radius: 50%;
+    animation: spinner 0.8s linear infinite;
+    margin: 0 auto var(--spacing-lg);
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-md);
+}
+
+/* 图片懒加载占位符 */
+img[data-src],
+img[data-srcset] {
+    background-color: var(--color-bg-tertiary);
+    background-image: linear-gradient(
+        90deg,
+        var(--color-bg-tertiary) 0%,
+        var(--color-bg-secondary) 50%,
+        var(--color-bg-tertiary) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+img.loaded {
+    opacity: 1;
+    background: none;
+    animation: none;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* 优化图片渲染 */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimize-quality;
+}
+
+/* 减少重绘和重排 */
+.gallery-card,
+.gallery-grid,
+.featured-grid {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* 内容可见性优化（实验性） */
+.gallery-section,
+.featured-works-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
+}
+
+/* 字体显示优化 */
+@font-face {
+    font-family: 'system-ui';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+/* 优化滚动性能 */
+.gallery-grid,
+.featured-grid,
+.events-grid {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* 减少动画（性能模式） */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* 低性能设备优化 */
+@media (max-width: 639px) {
+    /* 减少阴影和模糊效果 */
+    .gallery-card {
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .navbar.scrolled {
+        backdrop-filter: blur(5px);
+    }
+    
+    /* 简化动画 */
+    .scroll-animate {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+
+
+

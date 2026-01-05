@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="关于星空仰望 - 连接每一颗热爱星空的心">
+    <meta name="keywords" content="星空仰望,关于我们,星空摄影社区">
+    <meta name="author" content="星空仰望">
+    <meta name="robots" content="index, follow">
+    
+    <title>关于我们 | 星空仰望</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/about.css">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="styles/main.css" as="style">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div id="pageLoader" class="active" aria-hidden="true">
+        <div class="loader-content">
+            <div class="loader-spinner" aria-hidden="true"></div>
+            <div class="loader-text">加载中...</div>
+        </div>
+    </div>
+
+    <header role="banner" class="navbar" id="navbar">
+        <nav role="navigation" aria-label="主导航" class="navbar-container">
+            <!-- 品牌Logo -->
+            <div class="navbar-brand">
+                <a href="index.html" class="brand-logo" aria-label="星空仰望 - 返回首页">星空仰望</a>
+            </div>
+
+            <!-- 汉堡菜单按钮（移动端） -->
+            <button 
+                class="navbar-toggle" 
+                id="navbarToggle" 
+                aria-label="切换导航菜单"
+                aria-expanded="false"
+                aria-controls="navbarMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- 导航菜单 -->
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="index.html#home" class="nav-link" aria-label="首页">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gallery.html" class="nav-link" aria-label="作品展示">作品展示</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#guide" class="nav-link" aria-label="星空资讯">星空资讯</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link active" aria-label="关于我们">关于我们</a>
+                    </li>
+                </ul>
+
+                <!-- 用户操作区域 -->
+                <div class="navbar-actions">
+                    <button class="btn-upload" aria-label="上传作品">
+                        <span class="btn-upload-icon" aria-hidden="true">📷</span>
+                        <span class="btn-upload-text">上传作品</span>
+                    </button>
+                    <button class="btn-user" aria-label="用户菜单" id="userMenuBtn">
+                        <span class="user-icon" aria-hidden="true">👤</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 移动端背景遮罩 -->
+            <div class="navbar-overlay" id="navbarOverlay" aria-hidden="true"></div>
+        </nav>
+    </header>
+
+    <main role="main" class="about-main">
+        <!-- 页面标题区域 -->
+        <section class="about-hero">
+            <div class="container">
+                <h1 class="about-title">关于星空仰望</h1>
+                <p class="about-subtitle">连接每一颗热爱星空的心</p>
+            </div>
+        </section>
+
+        <!-- 主要内容区域 -->
+        <section class="about-content">
+            <div class="container">
+                <!-- 品牌故事 -->
+                <article class="about-section">
+                    <h2 class="section-title">品牌故事</h2>
+                    <div class="section-content">
+                        <p>星空仰望诞生于对宇宙的无限向往和对摄影艺术的热爱。我们相信，每一颗星星都承载着梦想，每一次快门都记录着永恒。</p>
+                        <p>在这个快节奏的时代，我们为星空摄影爱好者打造了一个宁静的港湾。这里不仅是作品展示的平台，更是心灵交流的桥梁。无论你是初入星空摄影的新手，还是经验丰富的摄影师，都能在这里找到属于自己的星空。</p>
+                        <p>我们致力于推广星空摄影文化，分享拍摄技巧，记录天象奇观，让更多人感受到宇宙的壮丽与神秘。</p>
+                    </div>
+                </article>
+
+                <!-- 我们的价值 -->
+                <article class="about-section">
+                    <h2 class="section-title">我们的价值</h2>
+                    <div class="section-content">
+                        <div class="value-grid">
+                            <div class="value-item">
+                                <h3 class="value-title">专业分享</h3>
+                                <p class="value-description">汇聚专业摄影师和天文爱好者，分享高质量的星空摄影作品和拍摄经验。</p>
+                            </div>
+                            <div class="value-item">
+                                <h3 class="value-title">知识传播</h3>
+                                <p class="value-description">提供全面的星空摄影教程、器材推荐和天象预告，帮助爱好者提升技能。</p>
+                            </div>
+                            <div class="value-item">
+                                <h3 class="value-title">社区连接</h3>
+                                <p class="value-description">搭建交流平台，让热爱星空的人们能够相互学习、共同成长。</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 联系方式 -->
+                <article class="about-section" id="contact">
+                    <h2 class="section-title">联系方式</h2>
+                    <div class="section-content">
+                        <div class="contact-info">
+                            <p>如果您有任何问题、建议或合作意向，欢迎通过以下方式联系我们：</p>
+                            <ul class="contact-list">
+                                <li>
+                                    <strong>邮箱：</strong>
+                                    <a href="mailto:contact@stargazing.com">contact@stargazing.com</a>
+                                </li>
+                                <li>
+                                    <strong>社交媒体：</strong>
+                                    <span>关注我们的官方账号获取最新动态</span>
+                                </li>
+                                <li>
+                                    <strong>反馈建议：</strong>
+                                    <span>我们重视每一位用户的意见，您的反馈将帮助我们不断改进</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo" class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <h3 class="footer-logo">星空仰望</h3>
+                        <p class="footer-slogan">连接每一颗热爱星空的心</p>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">快速链接</h4>
+                    <ul class="footer-menu">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="gallery.html">作品展示</a></li>
+                        <li><a href="index.html#guide">星空资讯</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 星空仰望. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="compatibility.js"></script>
+    <script src="performance.js"></script>
+    <script src="script.js" defer></script>
+    
+    <!-- Service Worker 注册 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker 注册成功:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker 注册失败:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+

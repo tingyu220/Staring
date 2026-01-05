@@ -1,0 +1,207 @@
+/* ============================================
+   关于我们页面样式
+   ============================================ */
+
+.about-main {
+    padding-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+/* 页面标题区域 */
+.about-hero {
+    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    padding: var(--spacing-4xl) var(--spacing-lg);
+    text-align: center;
+}
+
+.about-title {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+.about-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+/* 主要内容区域 */
+.about-content {
+    padding: var(--spacing-4xl) var(--spacing-lg);
+    background-color: var(--color-bg-primary);
+}
+
+.about-content .container {
+    max-width: var(--container-lg);
+    margin: 0 auto;
+}
+
+.about-section {
+    margin-bottom: var(--spacing-4xl);
+}
+
+.about-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-xl) 0;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-accent-primary);
+}
+
+.section-content {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+}
+
+.section-content p {
+    margin: var(--spacing-lg) 0;
+}
+
+.section-content p:first-child {
+    margin-top: 0;
+}
+
+.section-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* 价值网格 */
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.value-item {
+    padding: var(--spacing-xl);
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--border-radius-lg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.value-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.value-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+.value-description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+}
+
+/* 联系方式 */
+.contact-info {
+    margin-top: var(--spacing-xl);
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-lg) 0 0 0;
+}
+
+.contact-list li {
+    margin-bottom: var(--spacing-lg);
+    padding-left: var(--spacing-lg);
+    position: relative;
+}
+
+.contact-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-primary);
+    font-size: var(--font-size-xl);
+}
+
+.contact-list li:last-child {
+    margin-bottom: 0;
+}
+
+.contact-list strong {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+    display: inline-block;
+    min-width: 100px;
+}
+
+.contact-list a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.contact-list a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .value-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: var(--spacing-3xl) var(--spacing-md);
+    }
+
+    .about-title {
+        font-size: var(--font-size-4xl);
+    }
+
+    .about-subtitle {
+        font-size: var(--font-size-lg);
+    }
+
+    .about-content {
+        padding: var(--spacing-3xl) var(--spacing-md);
+    }
+
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .contact-list strong {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .about-subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    .section-title {
+        font-size: var(--font-size-xl);
+    }
+}
+
+

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="星空作品集 - 浏览精美的星空摄影作品，按类别、地点筛选，发现更多精彩内容">
+    <meta name="keywords" content="星空摄影,作品展示,银河,星轨,极光,深空">
+    <title>星空作品集 | 星空仰望</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="星空仰望">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/performance.css">
+    <link rel="stylesheet" href="styles/gallery.css">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="styles/main.css" as="style">
+    <link rel="preconnect" href="https://via.placeholder.com">
+    <link rel="preconnect" href="https://picsum.photos">
+    <link rel="dns-prefetch" href="https://via.placeholder.com">
+    <link rel="dns-prefetch" href="https://picsum.photos">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div id="pageLoader" class="active" aria-hidden="true">
+        <div class="loader-content">
+            <div class="loader-spinner" aria-hidden="true"></div>
+            <div class="loader-text">加载中...</div>
+        </div>
+    </div>
+    <header role="banner" class="navbar" id="navbar">
+        <nav role="navigation" aria-label="主导航" class="navbar-container">
+            <div class="navbar-brand">
+                <a href="index.html" class="brand-logo" aria-label="星空仰望 - 返回首页">星空仰望</a>
+            </div>
+            <button 
+                class="navbar-toggle" 
+                id="navbarToggle" 
+                aria-label="切换导航菜单"
+                aria-expanded="false"
+                aria-controls="navbarMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="index.html#home" class="nav-link">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gallery.html" class="nav-link active">作品展示</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#guide" class="nav-link">星空攻略</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#community" class="nav-link">社区</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#about" class="nav-link">关于</a>
+                    </li>
+                </ul>
+                <div class="navbar-actions">
+                    <button class="btn-upload" aria-label="上传作品">
+                        <span class="btn-upload-icon" aria-hidden="true">📷</span>
+                        <span class="btn-upload-text">上传作品</span>
+                    </button>
+                    <button class="btn-user" aria-label="用户菜单" id="userMenuBtn">
+                        <span class="user-icon" aria-hidden="true">👤</span>
+                    </button>
+                </div>
+            </div>
+            <div class="navbar-overlay" id="navbarOverlay" aria-hidden="true"></div>
+        </nav>
+    </header>
+
+    <main role="main" class="gallery-page">
+        <div class="gallery-page-header">
+            <h1 class="page-title">星空作品集</h1>
+            <p class="page-subtitle">探索精彩的星空摄影作品，发现宇宙之美</p>
+        </div>
+
+        <!-- 筛选器区域 -->
+        <div class="filters-section">
+            <button class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="filtersPanel">
+                <span>筛选</span>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div class="filters-panel" id="filtersPanel">
+                <div class="filter-group">
+                    <label class="filter-label">类别</label>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="category" data-value="all">全部</button>
+                        <button class="filter-btn" data-filter="category" data-value="银河">银河</button>
+                        <button class="filter-btn" data-filter="category" data-value="星轨">星轨</button>
+                        <button class="filter-btn" data-filter="category" data-value="极光">极光</button>
+                        <button class="filter-btn" data-filter="category" data-value="深空">深空</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">地点</label>
+                    <select class="filter-select" id="locationFilter">
+                        <option value="all">全部地点</option>
+                        <option value="西藏">西藏</option>
+                        <option value="新疆">新疆</option>
+                        <option value="内蒙古">内蒙古</option>
+                        <option value="北京">北京</option>
+                        <option value="云南">云南</option>
+                        <option value="四川">四川</option>
+                        <option value="青海">青海</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">排序</label>
+                    <select class="filter-select" id="sortFilter">
+                        <option value="latest">最新</option>
+                        <option value="hot">最热</option>
+                        <option value="comments">最多评论</option>
+                    </select>
+                </div>
+                <div class="filter-group filter-search">
+                    <label class="filter-label">搜索</label>
+                    <input 
+                        type="text" 
+                        class="filter-search-input" 
+                        id="searchInput" 
+                        placeholder="搜索作品标题、摄影师..."
+                        aria-label="搜索作品"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-layout">
+            <!-- 主内容区 -->
+            <div class="gallery-main">
+                <div class="results-info" id="resultsInfo">
+                    <span>共找到 <strong id="resultsCount">0</strong> 个作品</span>
+                </div>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- 作品卡片将通过JavaScript动态生成 -->
+                </div>
+                <div class="load-more-container">
+                    <button class="btn btn-primary load-more-btn" id="loadMoreBtn" style="display: none;">
+                        加载更多
+                    </button>
+                </div>
+            </div>
+
+            <!-- 侧边栏（桌面端） -->
+            <aside class="gallery-sidebar" id="gallerySidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">热门摄影师</h3>
+                    <ul class="photographer-list">
+                        <li class="photographer-item">
+                            <div class="photographer-avatar">📸</div>
+                            <div class="photographer-info">
+                                <span class="photographer-name">星空摄影师</span>
+                                <span class="photographer-stats">128 作品</span>
+                            </div>
+                        </li>
+                        <li class="photographer-item">
+                            <div class="photographer-avatar">🌌</div>
+                            <div class="photographer-info">
+                                <span class="photographer-name">银河捕手</span>
+                                <span class="photographer-stats">96 作品</span>
+                            </div>
+                        </li>
+                        <li class="photographer-item">
+                            <div class="photographer-avatar">⭐</div>
+                            <div class="photographer-info">
+                                <span class="photographer-name">星空猎人</span>
+                                <span class="photographer-stats">84 作品</span>
+                            </div>
+                        </li>
+                        <li class="photographer-item">
+                            <div class="photographer-avatar">🔭</div>
+                            <div class="photographer-info">
+                                <span class="photographer-name">深空摄影师</span>
+                                <span class="photographer-stats">72 作品</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">推荐拍摄地点</h3>
+                    <ul class="location-list">
+                        <li class="location-item">
+                            <span class="location-name">西藏 · 纳木错</span>
+                            <span class="location-count">256 作品</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="location-name">新疆 · 赛里木湖</span>
+                            <span class="location-count">189 作品</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="location-name">内蒙古 · 乌兰布统</span>
+                            <span class="location-count">142 作品</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="location-name">云南 · 泸沽湖</span>
+                            <span class="location-count">128 作品</span>
+                        </li>
+                        <li class="location-item">
+                            <span class="location-name">四川 · 稻城亚丁</span>
+                            <span class="location-count">115 作品</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">设备排行榜</h3>
+                    <ul class="equipment-list">
+                        <li class="equipment-item">
+                            <span class="equipment-rank">1</span>
+                            <span class="equipment-name">Sony A7III</span>
+                            <span class="equipment-count">1,248</span>
+                        </li>
+                        <li class="equipment-item">
+                            <span class="equipment-rank">2</span>
+                            <span class="equipment-name">Canon EOS R6</span>
+                            <span class="equipment-count">892</span>
+                        </li>
+                        <li class="equipment-item">
+                            <span class="equipment-rank">3</span>
+                            <span class="equipment-name">Nikon Z6</span>
+                            <span class="equipment-count">756</span>
+                        </li>
+                        <li class="equipment-item">
+                            <span class="equipment-rank">4</span>
+                            <span class="equipment-name">Sony A7R IV</span>
+                            <span class="equipment-count">634</span>
+                        </li>
+                        <li class="equipment-item">
+                            <span class="equipment-rank">5</span>
+                            <span class="equipment-name">Canon 5D Mark IV</span>
+                            <span class="equipment-count">521</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 大图查看模态框 -->
+    <div class="image-modal" id="imageModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="关闭">
+                <span>×</span>
+            </button>
+            <button class="modal-nav modal-nav-prev" id="modalPrev" aria-label="上一张">
+                <span>‹</span>
+            </button>
+            <button class="modal-nav modal-nav-next" id="modalNext" aria-label="下一张">
+                <span>›</span>
+            </button>
+            <div class="modal-image-container">
+                <div class="modal-loading" id="modalLoading">
+                    <span>加载中...</span>
+                </div>
+                <img src="" alt="" class="modal-image" id="modalImage">
+            </div>
+            <div class="modal-info-panel">
+                <div class="modal-info-header">
+                    <h3 id="modalTitle" class="modal-title"></h3>
+                    <button class="modal-download" id="modalDownload" aria-label="下载">
+                        <span>⬇</span> 下载
+                    </button>
+                </div>
+                <div class="modal-info-content">
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">摄影师</span>
+                        <span class="modal-info-value" id="modalAuthor"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">拍摄地点</span>
+                        <span class="modal-info-value" id="modalLocation"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">类别</span>
+                        <span class="modal-info-value" id="modalCategory"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">拍摄日期</span>
+                        <span class="modal-info-value" id="modalDate"></span>
+                    </div>
+                    <div class="modal-info-actions">
+                        <button class="modal-action-btn like-btn" id="modalLike" aria-label="点赞">
+                            <span class="action-icon">❤️</span>
+                            <span class="action-count" id="modalLikeCount">0</span>
+                        </button>
+                        <button class="modal-action-btn comment-btn" id="modalComment" aria-label="评论">
+                            <span class="action-icon">💬</span>
+                            <span class="action-count" id="modalCommentCount">0</span>
+                        </button>
+                        <button class="modal-action-btn favorite-btn" id="modalFavorite" aria-label="收藏">
+                            <span class="action-icon">⭐</span>
+                            <span>收藏</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer role="contentinfo" class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-logo">星空仰望</h3>
+                <p class="footer-tagline">以镜头定格璀璨，用热爱连接同好</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 class="footer-title">快速链接</h4>
+                    <ul class="footer-menu">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="gallery.html">作品展示</a></li>
+                        <li><a href="index.html#guide">新手入门</a></li>
+                        <li><a href="index.html#community">社区</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 星空仰望. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <!-- 兼容性处理（最先加载） -->
+    <script src="compatibility.js"></script>
+    
+    <!-- 数据脚本（优先加载） -->
+    <script src="scripts/data.js"></script>
+    
+    <!-- 关键脚本（同步加载） -->
+    <script src="app-state.js"></script>
+    
+    <!-- 性能优化脚本（优先加载） -->
+    <script src="performance.js"></script>
+    
+    <!-- 其他脚本（延迟加载） -->
+    <script src="scroll-animations.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="gallery.js" defer></script>
+    
+    <!-- Service Worker 注册 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+
