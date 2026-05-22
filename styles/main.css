@@ -1889,35 +1889,71 @@ body.modal-open {
     display: block;
 }
 
-/* 轮播图按钮 */
+/* 轮播图按钮 - 星空主题玻璃拟态 */
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 50px;
-    height: 50px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    font-size: 2rem;
-    color: var(--color-text-primary);
+    font-size: 1.75rem;
+    color: #fff;
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-base);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1;
+}
+
+.carousel-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(168, 85, 247, 0.2));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .carousel-btn:hover {
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-50%) scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 6px 24px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(99, 102, 241, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.12);
+    color: #fff;
+}
+
+.carousel-btn:hover::before {
+    opacity: 1;
 }
 
 .carousel-btn:active {
     transform: translateY(-50%) scale(0.95);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.carousel-btn:focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 3px;
 }
 
 .carousel-btn-prev {
@@ -1928,35 +1964,71 @@ body.modal-open {
     right: var(--spacing-lg);
 }
 
-/* 轮播图指示器 */
+/* 轮播图按钮 - 内箭头符号样式增强 */
+.carousel-btn-prev::after {
+    content: '‹';
+    display: block;
+    position: relative;
+    top: -2px;
+}
+
+.carousel-btn-next::after {
+    content: '›';
+    display: block;
+    position: relative;
+    top: -2px;
+}
+
+/* 隐藏原始文本（‹ 和 › 保留在内联文本但被覆盖） */
+.carousel-btn {
+    font-size: 0;
+    color: transparent;
+}
+/* 轮播图指示器 - 小圆点 */
 .carousel-indicators {
     position: absolute;
     bottom: var(--spacing-lg);
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: var(--spacing-sm);
+    gap: 4px;
     z-index: 10;
+    align-items: center;
 }
 
+
 .carousel-indicator {
-    width: 12px;
-    height: 12px;
+    width: 2px;
+    height: 2px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+    flex-shrink: 0;
 }
 
 .carousel-indicator.active {
-    background: rgba(255, 255, 255, 1);
-    transform: scale(1.2);
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .carousel-indicator:hover {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.5);
 }
+
+.carousel-indicator.active:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.5);
+}
+
+
+
+
 
 @media (max-width: 768px) {
     .carousel-btn {
@@ -1977,6 +2049,7 @@ body.modal-open {
         bottom: var(--spacing-md);
     }
 }
+
 
 @media (min-width: 1024px) {
     .featured-grid {
